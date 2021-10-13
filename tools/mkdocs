@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Get project root relative to this script
+prjroot="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )"
+docs="$( cd "${prjroot}/docs" > /dev/null 2>&1 && pwd )"
+pkg="$( cd "${prjroot}/auviewer" > /dev/null 2>&1 && pwd )"
+
+make --directory=${docs} clean
+rm -r ${docs}/api
+sphinx-apidoc -feTM -o ${docs}/api ${pkg} \
+  ${pkg}/flask_user \
+  ${pkg}/config.py \
+  ${pkg}/cylib.* \
+  ${pkg}/downsampleset.py \
+  ${pkg}/models.py \
+  ${pkg}/rawdata.py \
+  ${pkg}/shared.py
+make --directory=${docs} html
+
+# Open the docs in Chrome
+if command -v google-chrome &> /dev/null
+then
+  google-chrome ${docs}/_build/html/index.html
+else
+  open -a "Google Chrome" ${docs}/_build/html/index.html
+fi
+exit
