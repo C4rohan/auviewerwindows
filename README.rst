@@ -1,6 +1,8 @@
 Auton Universal Viewer
 ======================
 ALL CREDITS TO AUTON LAB AND TEAM AT CARNEGIE MELLON UNIVERSITY
+
+
 Welcome to the source code for Auton Universal Viewer (AUViewer). AUViewer is
 a tool for viewing, analyzing, and annotating large time-series datasets
 by an individual analyst (standalone) or a team of analysts/domain experts
